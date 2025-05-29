@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Fraction Pizzeria</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; }
+    canvas { border: 1px solid #000; margin-top: 20px; cursor: pointer; }
+    #mensagem { margin-top: 10px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1>🍕 Fraction Pizzeria</h1>
+  <p>Order: 3/4 pizza</p>
+  <canvas id="pizza" width="300" height="300"></canvas>
+  <p id="mensagem"></p>
+
+  <script>
+    const canvas = document.getElementById("pizza");
+    const ctx = canvas.getContext("2d");
+    const fatias = 4;
+    const pedido = 3;
+    let selecionadas = 0;
+    const clicadas = Array(fatias).fill(false);
+
+    function desenharPizza() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // limpa antes de redesenhar
+      for (let i = 0; i < fatias; i++) {
+        const anguloInicial = (i * 2 * Math.PI) / fatias;
+        const anguloFinal = ((i + 1) * 2 * Math.PI) / fatias;
+        ctx.beginPath();
+        ctx.moveTo(150, 150);
+        ctx.arc(150, 150, 140, anguloInicial, anguloFinal);
+        ctx.closePath();
+        ctx.fillStyle = clicadas[i] ? "#f00" : "#ffc107";
+        ctx.fill();
+        ctx.stroke();
+      }
+
+      // Mensagem de sucesso
+      if (selecionadas === pedido) {
+        document.getElementById("mensagem").textContent = "🎉 Congratulations! You completed the order !";
+      } else {
+        document.getElementById("mensagem").textContent = "";
+      }
+    }
+
+    canvas.addEventListener("click", function (e) {
+      const x = e.offsetX - 150;
+      const y = e.offsetY - 150;
+      const angulo = Math.atan2(y, x);
+      const index = Math.floor(((angulo + 2 * Math.PI) % (2 * Math.PI)) / (2 * Math.PI / fatias));
+
+      if (clicadas[index]) {
+        clicadas[index] = false;
+        selecionadas--;
+      } else {
+        clicadas[index] = true;
+        selecionadas++;
+      }
+
+      desenharPizza();
+    });
+
+    desenharPizza();
+  </script>
+</body>
+</html>

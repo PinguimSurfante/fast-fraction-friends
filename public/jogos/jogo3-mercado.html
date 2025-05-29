@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Memory Fraction Match 🧠</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #fff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #6a1b9a;
+    }
+
+    #game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 100px);
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .card {
+      width: 100px;
+      height: 100px;
+      background-color: #ffd7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .card.flipped {
+      background-color: #fff176;
+      font-weight: bold;
+      transform: scale(1.05);
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧠 Memory Fraction Match</h1>
+  <p>Match fractions with their correct visual representation!</p>
+
+  <div id="game-board"></div>
+  <div id="message"></div>
+
+  <script>
+    const pairs = [
+      { id: 1, content: "1/2" }, { id: 1, content: "🍕🍕" },
+      { id: 2, content: "3/4" }, { id: 2, content: "🍕🍕🍕" },
+      { id: 3, content: "1/4" }, { id: 3, content: "🍕" },
+      { id: 4, content: "2/4" }, { id: 4, content: "🍕🍕" },
+    ];
+
+    let shuffled = [...pairs].sort(() => 0.5 - Math.random());
+    const board = document.getElementById("game-board");
+    const message = document.getElementById("message");
+
+    let flippedCards = [];
+    let matchedCount = 0;
+
+    function createCard(pair, index) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.dataset.id = pair.id;
+      card.dataset.index = index;
+      card.textContent = "";
+
+      card.addEventListener("click", () => {
+        if (card.classList.contains("flipped") || flippedCards.length === 2) return;
+
+        card.textContent = pair.content;
+        card.classList.add("flipped");
+        flippedCards.push({ card, id: pair.id });
+
+        if (flippedCards.length === 2) {
+          setTimeout(() => {
+            const [first, second] = flippedCards;
+            if (first.id === second.id) {
+              matchedCount++;
+              if (matchedCount === pairs.length / 2) {
+                message.textContent = "🎉 You matched all pairs!";
+              }
+            } else {
+              first.card.textContent = "";
+              second.card.textContent = "";
+              first.card.classList.remove("flipped");
+              second.card.classList.remove("flipped");
+            }
+            flippedCards = [];
+          }, 800);
+        }
+      });
+
+      return card;
+    }
+
+    shuffled.forEach((pair, index) => {
+      board.appendChild(createCard(pair, index));
+    });
+  </script>
+
+</body>
+</html>

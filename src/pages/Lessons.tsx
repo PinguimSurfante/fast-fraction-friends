@@ -1,18 +1,17 @@
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Star, ArrowRight, Check, Play } from "lucide-react";
+import { Play, Check } from "lucide-react";
 
-const lessons = [
+const defaultLessons = [
   {
     id: 1,
     title: "What are Fractions? 🍰",
     description: "Learn the basics of fractions with our friendly owl teacher!",
     duration: "5 min",
-    completed: true,
     difficulty: "Easy",
     icon: "🍰"
   },
@@ -21,7 +20,6 @@ const lessons = [
     title: "Parts of a Whole 🍕",
     description: "Discover how fractions show parts of pizzas, cakes, and more!",
     duration: "7 min",
-    completed: true,
     difficulty: "Easy",
     icon: "🍕"
   },
@@ -30,7 +28,6 @@ const lessons = [
     title: "Fractions in Sets 🎾",
     description: "Learn about fractions when counting groups of objects!",
     duration: "6 min",
-    completed: false,
     difficulty: "Medium",
     icon: "🎾"
   },
@@ -39,7 +36,6 @@ const lessons = [
     title: "Equal Fractions 🎭",
     description: "Find out how different fractions can mean the same thing!",
     duration: "8 min",
-    completed: false,
     difficulty: "Medium",
     icon: "🎭"
   },
@@ -48,7 +44,6 @@ const lessons = [
     title: "Comparing Fractions ⚖️",
     description: "Learn which fractions are bigger or smaller!",
     duration: "10 min",
-    completed: false,
     difficulty: "Hard",
     icon: "⚖️"
   }
@@ -61,8 +56,17 @@ const difficultyColors = {
 };
 
 export default function Lessons() {
-  const [selectedLesson, setSelectedLesson] = useState<number | null>(null);
-  const completedLessons = lessons.filter(lesson => lesson.completed).length;
+  const navigate = useNavigate();
+  const [lessons, setLessons] = useState(() => {
+    const saved = localStorage.getItem("completedLessons");
+    const completed = saved ? JSON.parse(saved) : [];
+    return defaultLessons.map((lesson) => ({
+      ...lesson,
+      completed: completed.includes(lesson.id)
+    }));
+  });
+
+  const completedLessons = lessons.filter((lesson) => lesson.completed).length;
   const progressPercentage = (completedLessons / lessons.length) * 100;
 
   const LessonCard = ({ lesson }: { lesson: typeof lessons[0] }) => (
@@ -93,20 +97,19 @@ export default function Lessons() {
       <CardContent>
         <p className="text-purple-600 mb-4 font-medium">{lesson.description}</p>
         <Button 
-          className={`w-full ${lesson.completed ? 'bg-kid-green hover:bg-green-400' : 'kid-button'} font-bold text-lg py-3 rounded-2xl`}
-          onClick={() => setSelectedLesson(lesson.id)}
+          className="w-full kid-button font-bold text-lg py-3 rounded-2xl"
+          onClick={() => {
+            const completed = JSON.parse(localStorage.getItem("completedLessons") || "[]");
+            if (!completed.includes(lesson.id)) {
+              const updated = [...completed, lesson.id];
+              localStorage.setItem("completedLessons", JSON.stringify(updated));
+              setLessons((prev) => prev.map((l) => l.id === lesson.id ? { ...l, completed: true } : l));
+            }
+            navigate(`/lessons/${lesson.id}`);
+          }}
         >
-          {lesson.completed ? (
-            <>
-              <Star className="mr-2 h-5 w-5" />
-              Review Lesson
-            </>
-          ) : (
-            <>
-              <Play className="mr-2 h-5 w-5" />
-              Start Learning
-            </>
-          )}
+          <Play className="mr-2 h-5 w-5" />
+          Start Learning
         </Button>
       </CardContent>
     </Card>
@@ -127,7 +130,7 @@ export default function Lessons() {
             </p>
           </div>
         </div>
-        
+
         {/* Progress Overview */}
         <div className="bg-gradient-to-r from-kid-purple/20 to-kid-pink/20 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-4">
@@ -159,7 +162,7 @@ export default function Lessons() {
       <div className="kid-card max-w-2xl mx-auto text-center">
         <div className="text-5xl mb-4">🎊</div>
         <h3 className="text-2xl font-bold text-purple-700 mb-2">
-          You're Doing Amazing! 
+          You're Doing Amazing!
         </h3>
         <p className="text-lg text-purple-600 font-medium">
           Every lesson makes you a fraction superhero! Keep up the fantastic work! 💪✨

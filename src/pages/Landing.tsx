@@ -1,4 +1,4 @@
-
+// Landing.tsx
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -59,29 +59,30 @@ export default function Landing() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-kid-yellow via-kid-blue to-kid-purple">
+    <div className="min-h-screen bg-gradient-to-br from-[#fef9c3] via-[#d9f99d] to-[#a5f3fc]">
       {/* Header */}
       <header className="bg-white/90 backdrop-blur-sm sticky top-0 z-50 border-b-4 border-kid-purple/20">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="text-4xl">🧮</div>
             <div>
-              <h1 className="text-2xl font-bold text-purple-700">Fraction Fast Pack</h1>
+              <h1 className="text-2xl font-bold text-purple-700">Fraction Fast</h1>
               <p className="text-sm text-purple-500 font-medium">Learn fractions while playing!</p>
             </div>
           </div>
           <Link to="/lessons">
-            <Button className="kid-button text-lg px-6 py-3">
-              Get Started 🚀
-            </Button>
+            <Button className="kid-button text-2xl px-12 py-6 text-black shadow-2xl hover:shadow-3xl transform hover:scale-110">
+          Start now! ✨
+        </Button>
+
           </Link>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-gradient-to-br from-[#fef9c3] via-[#d9f99d] to-[#a5f3fc]">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="kid-card max-w-4xl mx-auto">
+          <div className="bg-white/90 rounded-3xl p-10 shadow-xl border-4 border-white/50">
             <div className="text-8xl mb-6 animate-bounce-slow">🎯</div>
             <h1 className="text-5xl font-bold text-purple-700 mb-6 leading-tight">
               Learning fractions has never been so fun! 🎉
@@ -96,16 +97,17 @@ export default function Landing() {
               </div>
             </div>
             <Link to="/lessons">
-              <Button className="kid-button text-2xl px-12 py-6 text-white shadow-2xl hover:shadow-3xl transform hover:scale-110">
-                Start now! ✨
-              </Button>
+              <Button className="kid-button text-2xl px-12 py-6 text-black shadow-2xl hover:shadow-3xl transform hover:scale-110">
+              Start now! ✨
+            </Button>
+
             </Link>
           </div>
         </div>
       </section>
 
       {/* How it works */}
-      <section className="py-20 px-6 bg-white/30">
+      <section className="py-20 px-6 bg-gradient-to-br from-[#ecfccb] via-[#d1fae5] to-[#a7f3d0]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-purple-700 text-center mb-4">
             How does it work? 🤔
@@ -113,10 +115,10 @@ export default function Landing() {
           <p className="text-xl text-purple-600 text-center mb-12 font-medium">
             Three simple steps to turn your child into a fraction expert!
           </p>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="kid-card text-center hover:scale-105 transition-all duration-300">
+              <Card key={index} className="card-rosy text-center hover:scale-105 transition-all duration-300">
+
                 <CardContent className="pt-8">
                   <div className="text-6xl mb-6 animate-wiggle">{feature.icon}</div>
                   <h3 className="text-2xl font-bold text-purple-700 mb-4">{feature.title}</h3>
@@ -131,7 +133,7 @@ export default function Landing() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-gradient-to-br from-[#e0f2fe] via-[#dbeafe] to-[#c7d2fe]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-purple-700 text-center mb-4">
             What parents are saying? 💬
@@ -139,7 +141,6 @@ export default function Landing() {
           <p className="text-xl text-purple-600 text-center mb-12 font-medium">
             Thousands of families are already learning with us!
           </p>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="relative">
@@ -166,81 +167,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-20 px-6 bg-white/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-purple-700 mb-4">
-            Full access for only $9/month! 💰
-          </h2>
-          <p className="text-xl text-purple-600 mb-12 font-medium">
-            Less than a McDonald's combo, but much more nutritious for the brain! 🧠
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Parent Plan */}
-            <Card className="kid-card border-4 border-kid-green/50 bg-gradient-to-br from-kid-green/10 to-white">
-              <CardContent className="pt-8">
-                <div className="text-5xl mb-4">👨‍👩‍👧‍👦</div>
-                <h3 className="text-2xl font-bold text-purple-700 mb-2">Parent Plan</h3>
-                <div className="text-4xl font-bold text-purple-700 mb-4">$9/month</div>
-                <ul className="text-left space-y-3 mb-6">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Full access for 1 child</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Weekly progress reports</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Educational support</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Completion certificates</span>
-                  </li>
-                </ul>
-                <Button className="kid-button w-full text-xl py-4">
-                  Subscribe now! 🚀
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Teacher Plan */}
-            <Card className="kid-card border-4 border-kid-orange/50 bg-gradient-to-br from-kid-orange/10 to-white">
-              <CardContent className="pt-8">
-                <div className="text-5xl mb-4">👩‍🏫</div>
-                <h3 className="text-2xl font-bold text-purple-700 mb-2">Teacher Plan</h3>
-                <div className="text-4xl font-bold text-purple-700 mb-4">$19/month</div>
-                <div className="text-sm text-purple-600 font-medium mb-4">per classroom</div>
-                <ul className="text-left space-y-3 mb-6">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Multiple students per classroom</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Special classroom dashboard</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Individual reports</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Exclusive teaching materials</span>
-                  </li>
-                </ul>
-                <Button className="kid-button w-full text-xl py-4">
-                  Subscribe now! 📚
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
@@ -253,7 +179,8 @@ export default function Landing() {
           
           <div className="space-y-6">
             {faqs.map((faq, index) => (
-              <Card key={index} className="kid-card">
+              <Card key={index} className="card-rosy text-center hover:scale-105 transition-all duration-300">
+
                 <CardContent className="pt-6">
                   <h3 className="text-xl font-bold text-purple-700 mb-3 flex items-center gap-2">
                     <div className="text-2xl">❓</div>

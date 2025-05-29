@@ -1,4 +1,4 @@
-
+/* styles.css */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
@@ -24,7 +24,7 @@
     --muted: 241 245 249;
     --muted-foreground: 100 116 139;
 
-    --accent: 251 207 232;
+    --accent: 240 100% 85%;
     --accent-foreground: 78 46 148;
 
     --destructive: 239 68 68;
@@ -36,18 +36,16 @@
 
     --radius: 1rem;
 
-    --sidebar-background: 255 255 255;
-    --sidebar-foreground: 78 46 148;
+    --sidebar-background: 195 53% 79%;
+    --sidebar-foreground: 222 47% 11%;
     --sidebar-primary: 147 51 234;
     --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 241 245 249;
+    --sidebar-accent: 240 100% 85%;
     --sidebar-accent-foreground: 78 46 148;
     --sidebar-border: 226 232 240;
     --sidebar-ring: 147 51 234;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -62,12 +60,25 @@
   .kid-button {
     @apply bg-gradient-to-r from-kid-purple to-kid-pink text-white font-bold py-3 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95;
   }
-  
+
   .kid-card {
-    @apply bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border-4 border-white/50 p-6;
+    @apply bg-gradient-to-br from-kid-pink to-white border-4 border-kid-pink/30 rounded-2xl shadow-lg p-6;  /* Laranja */
   }
-  
+
   .lesson-card {
     @apply bg-gradient-to-br from-white to-kid-blue/30 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer border-2 border-kid-blue/20;
   }
+
+  .feature-card-yellow {
+    @apply bg-yellow-400 rounded-xl shadow-md p-6 text-purple-700 hover:scale-105 transition-transform duration-300;
+  }
+
+  .background-soft {
+    @apply bg-gradient-to-br from-[#fef9c3] via-[#d9f99d] to-[#a5f3fc];
+  }
+
+  .card-rosy {
+  @apply bg-gradient-to-br from-kid-pink to-white border-4 border-kid-pink/30 rounded-2xl shadow-lg p-6;
+}
+
 }

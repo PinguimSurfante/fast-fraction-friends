@@ -1,9 +1,15 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Play, Star, Trophy, Target } from "lucide-react";
+import { Play, Star, Trophy } from "lucide-react";
+import PizzaModal from "@/components/PizzaModal";
+import RaceModal from "@/components/RaceModal"; // ✅ novo import
+import MemoryModal from "@/components/MemoryModal";
+import CakeModal from "@/components/CakeModal";
+import SpaceModal from "@/components/SpaceModal";
+import GardenModal from "@/components/GardenModal";
+
 
 const games = [
   {
@@ -76,6 +82,12 @@ const difficultyColors = {
 
 export default function Games() {
   const [selectedGame, setSelectedGame] = useState<number | null>(null);
+  const [pizzaModalOpen, setPizzaModalOpen] = useState(false);
+  const [raceModalOpen, setRaceModalOpen] = useState(false); // ✅ novo estado
+  const [memoryModalOpen, setMemoryModalOpen] = useState(false);
+  const [CakeModalOpen, setCakeModalOpen] = useState(false);
+  const [SpaceModalOpen, setSpaceModalOpen] = useState(false);
+  const [GardenModalOpen, setGardenModalOpen] = useState(false);
 
   const GameCard = ({ game }: { game: typeof games[0] }) => (
     <Card className="lesson-card overflow-hidden group hover:scale-105 transition-all duration-300">
@@ -120,7 +132,22 @@ export default function Games() {
 
         <Button 
           className="w-full kid-button font-bold text-lg py-3 rounded-2xl group-hover:scale-105 transition-all duration-300"
-          onClick={() => setSelectedGame(game.id)}
+          onClick={() => {
+            setSelectedGame(game.id);
+            if (game.id === 1) {
+              setPizzaModalOpen(true);
+            } else if (game.id === 2) {
+              setRaceModalOpen(true); // ✅ abre o modal do carro
+            } else if (game.id === 3) {
+              setMemoryModalOpen(true);
+            } else if (game.id === 4) {
+              setCakeModalOpen(true);
+            } else if (game.id === 5) {
+              setSpaceModalOpen(true);
+            } else if (game.id === 6) {
+              setGardenModalOpen(true);
+            }
+          }}
         >
           <Play className="mr-2 h-5 w-5" />
           {game.bestScore > 0 ? "Play Again!" : "Start Game!"}
@@ -193,6 +220,14 @@ export default function Games() {
           Every game makes you better at fractions! Have fun and don't forget to celebrate your wins! 🎉
         </p>
       </div>
+
+      {/* ✅ Modais dos jogos */}
+      <PizzaModal open={pizzaModalOpen} setOpen={setPizzaModalOpen} />
+      <RaceModal open={raceModalOpen} setOpen={setRaceModalOpen} />
+      <MemoryModal open={memoryModalOpen} setOpen={setMemoryModalOpen} />
+      <CakeModal open={CakeModalOpen} setOpen={setCakeModalOpen} />
+      <SpaceModal open={SpaceModalOpen} setOpen={setSpaceModalOpen} />
+      <GardenModal open={GardenModalOpen} setOpen={setGardenModalOpen} />
     </div>
   );
 }

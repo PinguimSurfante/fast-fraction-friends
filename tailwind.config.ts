@@ -64,8 +64,9 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				'kid-purple': '#B794F6',
-				'kid-yellow': '#FEF08A',
-				'kid-blue': '#BAE6FD',
+				'kid-yellow': '#FAFAD2',
+				'kid-blue': '#60A5FA',
+				'kid-blue-strong': '#60A5FA',
 				'kid-pink': '#FBCFE8',
 				'kid-green': '#BBF7D0',
 				'kid-orange': '#FDBA74'
