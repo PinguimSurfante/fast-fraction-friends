@@ -23,7 +23,7 @@ const navigationItems = [
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { open } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
@@ -43,11 +43,11 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className={`${collapsed ? "w-20" : "w-72"} bg-white/95 backdrop-blur-sm border-r-4 border-kid-purple/20`}>
+    <Sidebar className={`${!open ? "w-20" : "w-72"} bg-white/95 backdrop-blur-sm border-r-4 border-kid-purple/20`}>
       <SidebarContent className="p-4">
         {/* App Logo/Title */}
         <div className="mb-8 text-center">
-          {!collapsed && (
+          {open && (
             <div className="space-y-2">
               <h1 className="text-2xl font-bold text-purple-700 animate-bounce-slow">
                 🧮 Fraction Fast Pack
@@ -55,7 +55,7 @@ export function AppSidebar() {
               <p className="text-sm text-purple-500 font-medium">Learn fractions the fun way!</p>
             </div>
           )}
-          {collapsed && (
+          {!open && (
             <div className="text-3xl animate-wiggle">🧮</div>
           )}
         </div>
@@ -70,8 +70,8 @@ export function AppSidebar() {
                       to={item.url} 
                       className={getNavCls({ isActive: isActive(item.url) })}
                     >
-                      <item.icon className={`h-6 w-6 ${!collapsed ? 'mr-2' : ''}`} />
-                      {!collapsed && <span className="text-lg">{item.title}</span>}
+                      <item.icon className={`h-6 w-6 ${open ? 'mr-2' : ''}`} />
+                      {open && <span className="text-lg">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -87,10 +87,10 @@ export function AppSidebar() {
               <Button 
                 variant="destructive" 
                 className={`w-full bg-red-500 hover:bg-red-600 text-white rounded-2xl font-bold text-lg py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ${
-                  collapsed ? 'px-2' : 'px-4'
+                  !open ? 'px-2' : 'px-4'
                 }`}
               >
-                🔓 {!collapsed && "Logout"}
+                🔓 {open && "Logout"}
               </Button>
             </DialogTrigger>
             <DialogContent className="kid-card max-w-md">

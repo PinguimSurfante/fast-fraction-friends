@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -23,7 +22,7 @@ const weeklyProgress = [
   { day: "Sun", lessons: 1, games: 1 }
 ];
 
-export default function Progress() {
+export default function ProgressPage() {
   const totalLessons = 5;
   const completedLessons = 2;
   const totalGames = 6;
