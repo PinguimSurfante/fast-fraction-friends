@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 
@@ -14,7 +14,7 @@ import Progress from "./pages/Progress";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
-// Página de lição individual
+// Páginas de lições individuais
 import Lesson1 from "./pages/lessons/Lesson1";
 import Lesson2 from "./pages/lessons/Lesson2";
 import Lesson3 from "./pages/lessons/Lesson3";
@@ -29,12 +29,12 @@ export default function App() {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <Router>
           <Routes>
-            {/* Página de entrada sem sidebar */}
+            {/* Landing page pública sem sidebar */}
             <Route path="/landing" element={<Landing />} />
 
-            {/* Rotas da aplicação com sidebar */}
+            {/* Rotas principais com sidebar */}
             <Route
               path="/*"
               element={
@@ -45,11 +45,11 @@ export default function App() {
                       <Routes>
                         <Route path="/" element={<Navigate to="/lessons" replace />} />
                         <Route path="/lessons" element={<Lessons />} />
-                        <Route path="/lessons/1" element={<Lesson1 />} /> 
-                        <Route path="/lessons/2" element={<Lesson2 />} /> 
-                        <Route path="/lessons/3" element={<Lesson3 />} /> 
-                        <Route path="/lessons/4" element={<Lesson4 />} /> 
-                        <Route path="/lessons/5" element={<Lesson5 />} /> 
+                        <Route path="/lessons/1" element={<Lesson1 />} />
+                        <Route path="/lessons/2" element={<Lesson2 />} />
+                        <Route path="/lessons/3" element={<Lesson3 />} />
+                        <Route path="/lessons/4" element={<Lesson4 />} />
+                        <Route path="/lessons/5" element={<Lesson5 />} />
                         <Route path="/games" element={<Games />} />
                         <Route path="/progress" element={<Progress />} />
                         <Route path="/profile" element={<Profile />} />
@@ -61,7 +61,7 @@ export default function App() {
               }
             />
           </Routes>
-        </BrowserRouter>
+        </Router>
       </TooltipProvider>
     </QueryClientProvider>
   );
