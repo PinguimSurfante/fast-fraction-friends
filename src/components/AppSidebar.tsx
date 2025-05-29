@@ -59,7 +59,7 @@ export function AppSidebar() {
           {open ? (
             <div className="space-y-2">
               <h1 className="text-2xl font-bold text-purple-700 animate-bounce-slow">
-                \ud83e\uddc2 Fraction Fast Pack
+                Fraction Fast Pack
               </h1>
               <p className="text-sm text-purple-500 font-medium">
                 Learn fractions the fun way!
