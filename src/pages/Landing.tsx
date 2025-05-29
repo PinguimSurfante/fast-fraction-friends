@@ -8,53 +8,53 @@ import { Link } from "react-router-dom";
 export default function Landing() {
   const testimonials = [
     {
-      text: "Minha filha aprendeu em uma semana o que levou meses na escola!",
-      parent: "Maria, mãe da Sofia"
+      text: "My daughter learned in one week what took months at school!",
+      parent: "Maria, Sofia's mom"
     },
     {
-      text: "Ele nem percebe que está estudando — acha que está jogando!",
-      parent: "João, pai do Pedro"
+      text: "He doesn't even realize he's studying — he thinks he's playing!",
+      parent: "John, Pedro's dad"
     },
     {
-      text: "Finalmente uma forma divertida de ensinar matemática!",
-      parent: "Ana, mãe do Lucas"
+      text: "Finally a fun way to teach math!",
+      parent: "Anna, Lucas's mom"
     }
   ];
 
   const features = [
     {
       icon: "📘",
-      title: "Lições interativas",
-      description: "Com personagens divertidos que tornam o aprendizado uma aventura!"
+      title: "Interactive lessons",
+      description: "With fun characters that turn learning into an adventure!"
     },
     {
       icon: "🎮",
-      title: "Mini-jogos",
-      description: "Pratique frações enquanto se diverte com jogos incríveis!"
+      title: "Mini-games",
+      description: "Practice fractions while having fun with amazing games!"
     },
     {
       icon: "📊",
-      title: "Acompanhamento",
-      description: "Medalhas e estrelas para celebrar cada conquista!"
+      title: "Progress tracking",
+      description: "Medals and stars to celebrate every achievement!"
     }
   ];
 
   const faqs = [
     {
-      question: "É seguro para crianças?",
-      answer: "Sim! Nossa plataforma é 100% segura, sem anúncios externos e com proteção total da privacidade das crianças."
+      question: "Is it safe for children?",
+      answer: "Yes! Our platform is 100% safe, with no external ads and complete protection of children's privacy."
     },
     {
-      question: "Precisa instalar ou funciona online?",
-      answer: "Funciona direto no navegador! Não precisa instalar nada, apenas acesse de qualquer dispositivo."
+      question: "Do I need to install anything or does it work online?",
+      answer: "It works directly in the browser! No installation needed, just access from any device."
     },
     {
-      question: "Como acompanho o progresso do meu filho?",
-      answer: "Você recebe relatórios semanais detalhados e pode acompanhar em tempo real pelo dashboard dos pais."
+      question: "How do I track my child's progress?",
+      answer: "You receive detailed weekly reports and can track progress in real-time through the parent dashboard."
     },
     {
-      question: "O conteúdo é alinhado ao currículo escolar?",
-      answer: "Sim! Todo o conteúdo segue a Base Nacional Comum Curricular (BNCC) para o 3º ano do ensino fundamental."
+      question: "Is the content aligned with school curriculum?",
+      answer: "Yes! All content follows the Common Core State Standards for 3rd grade elementary math."
     }
   ];
 
@@ -67,12 +67,12 @@ export default function Landing() {
             <div className="text-4xl">🧮</div>
             <div>
               <h1 className="text-2xl font-bold text-purple-700">Fraction Fast Pack</h1>
-              <p className="text-sm text-purple-500 font-medium">Aprender frações brincando!</p>
+              <p className="text-sm text-purple-500 font-medium">Learn fractions while playing!</p>
             </div>
           </div>
           <Link to="/lessons">
             <Button className="kid-button text-lg px-6 py-3">
-              Entrar 🚀
+              Get Started 🚀
             </Button>
           </Link>
         </div>
@@ -84,34 +84,34 @@ export default function Landing() {
           <div className="kid-card max-w-4xl mx-auto">
             <div className="text-8xl mb-6 animate-bounce-slow">🎯</div>
             <h1 className="text-5xl font-bold text-purple-700 mb-6 leading-tight">
-              Aprender frações nunca foi tão divertido! 🎉
+              Learning fractions has never been so fun! 🎉
             </h1>
             <p className="text-2xl text-purple-600 font-medium mb-8 leading-relaxed">
-              Com jogos, lições e atividades, seu filho aprende brincando e se diverte estudando matemática!
+              With games, lessons and activities, your child learns while playing and has fun studying math!
             </p>
             <div className="flex justify-center mb-8">
               <div className="bg-kid-green/20 rounded-3xl p-8 border-4 border-kid-green/30">
                 <div className="text-6xl">👨‍💻👧</div>
-                <p className="text-purple-600 font-medium mt-4">Diversão garantida para toda a família!</p>
+                <p className="text-purple-600 font-medium mt-4">Fun guaranteed for the whole family!</p>
               </div>
             </div>
             <Link to="/lessons">
               <Button className="kid-button text-2xl px-12 py-6 text-white shadow-2xl hover:shadow-3xl transform hover:scale-110">
-                Começar agora! ✨
+                Start now! ✨
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Como funciona */}
+      {/* How it works */}
       <section className="py-20 px-6 bg-white/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-purple-700 text-center mb-4">
-            Como funciona? 🤔
+            How does it work? 🤔
           </h2>
           <p className="text-xl text-purple-600 text-center mb-12 font-medium">
-            Três passos simples para transformar seu filho em um expert em frações!
+            Three simple steps to turn your child into a fraction expert!
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -130,14 +130,14 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Depoimentos */}
+      {/* Testimonials */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-purple-700 text-center mb-4">
-            O que os pais estão dizendo? 💬
+            What parents are saying? 💬
           </h2>
           <p className="text-xl text-purple-600 text-center mb-12 font-medium">
-            Milhares de famílias já estão aprendendo com a gente!
+            Thousands of families are already learning with us!
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -166,74 +166,74 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Preços */}
+      {/* Pricing */}
       <section className="py-20 px-6 bg-white/30">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-purple-700 mb-4">
-            Acesso completo por apenas $9/mês! 💰
+            Full access for only $9/month! 💰
           </h2>
           <p className="text-xl text-purple-600 mb-12 font-medium">
-            Menos que um combo no McDonald's, mas muito mais nutritivo para o cérebro! 🧠
+            Less than a McDonald's combo, but much more nutritious for the brain! 🧠
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Plano Pais */}
+            {/* Parent Plan */}
             <Card className="kid-card border-4 border-kid-green/50 bg-gradient-to-br from-kid-green/10 to-white">
               <CardContent className="pt-8">
                 <div className="text-5xl mb-4">👨‍👩‍👧‍👦</div>
-                <h3 className="text-2xl font-bold text-purple-700 mb-2">Plano para Pais</h3>
-                <div className="text-4xl font-bold text-purple-700 mb-4">$9/mês</div>
+                <h3 className="text-2xl font-bold text-purple-700 mb-2">Parent Plan</h3>
+                <div className="text-4xl font-bold text-purple-700 mb-4">$9/month</div>
                 <ul className="text-left space-y-3 mb-6">
                   <li className="flex items-center gap-2">
                     <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Acesso completo para 1 criança</span>
+                    <span className="text-purple-600 font-medium">Full access for 1 child</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Relatórios de progresso semanais</span>
+                    <span className="text-purple-600 font-medium">Weekly progress reports</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Suporte pedagógico</span>
+                    <span className="text-purple-600 font-medium">Educational support</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Certificados de conclusão</span>
+                    <span className="text-purple-600 font-medium">Completion certificates</span>
                   </li>
                 </ul>
                 <Button className="kid-button w-full text-xl py-4">
-                  Assinar agora! 🚀
+                  Subscribe now! 🚀
                 </Button>
               </CardContent>
             </Card>
 
-            {/* Plano Professoras */}
+            {/* Teacher Plan */}
             <Card className="kid-card border-4 border-kid-orange/50 bg-gradient-to-br from-kid-orange/10 to-white">
               <CardContent className="pt-8">
                 <div className="text-5xl mb-4">👩‍🏫</div>
-                <h3 className="text-2xl font-bold text-purple-700 mb-2">Plano para Professoras</h3>
-                <div className="text-4xl font-bold text-purple-700 mb-4">$19/mês</div>
-                <div className="text-sm text-purple-600 font-medium mb-4">por turma</div>
+                <h3 className="text-2xl font-bold text-purple-700 mb-2">Teacher Plan</h3>
+                <div className="text-4xl font-bold text-purple-700 mb-4">$19/month</div>
+                <div className="text-sm text-purple-600 font-medium mb-4">per classroom</div>
                 <ul className="text-left space-y-3 mb-6">
                   <li className="flex items-center gap-2">
                     <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Múltiplos alunos por turma</span>
+                    <span className="text-purple-600 font-medium">Multiple students per classroom</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Dashboard especial para sala</span>
+                    <span className="text-purple-600 font-medium">Special classroom dashboard</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Relatórios individuais</span>
+                    <span className="text-purple-600 font-medium">Individual reports</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="w-5 h-5 text-green-600" />
-                    <span className="text-purple-600 font-medium">Material didático exclusivo</span>
+                    <span className="text-purple-600 font-medium">Exclusive teaching materials</span>
                   </li>
                 </ul>
                 <Button className="kid-button w-full text-xl py-4">
-                  Assinar agora! 📚
+                  Subscribe now! 📚
                 </Button>
               </CardContent>
             </Card>
@@ -245,10 +245,10 @@ export default function Landing() {
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-purple-700 text-center mb-4">
-            Dúvidas dos pais 🤔
+            Parents' questions 🤔
           </h2>
           <p className="text-xl text-purple-600 text-center mb-12 font-medium">
-            Aqui estão as respostas para as perguntas mais comuns!
+            Here are the answers to the most common questions!
           </p>
           
           <div className="space-y-6">
@@ -269,7 +269,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Rodapé */}
+      {/* Footer */}
       <footer className="bg-purple-700 text-white py-12 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -279,30 +279,30 @@ export default function Landing() {
                 <h3 className="text-xl font-bold">Fraction Fast Pack</h3>
               </div>
               <p className="text-purple-200 font-medium">
-                Transformando o aprendizado de frações em diversão!
+                Transforming fraction learning into fun!
               </p>
             </div>
             
             <div className="text-center md:text-left">
-              <h4 className="text-lg font-bold mb-4">Links Úteis</h4>
+              <h4 className="text-lg font-bold mb-4">Useful Links</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Termos de Uso</a></li>
-                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Política de Privacidade</a></li>
-                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Contato</a></li>
+                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Terms of Use</a></li>
+                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Contact</a></li>
               </ul>
             </div>
             
             <div className="text-center md:text-left">
-              <h4 className="text-lg font-bold mb-4">Para Educadores</h4>
+              <h4 className="text-lg font-bold mb-4">For Educators</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Plano Escolar</a></li>
-                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Material Didático</a></li>
-                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Treinamentos</a></li>
+                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">School Plan</a></li>
+                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Teaching Materials</a></li>
+                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Training</a></li>
               </ul>
             </div>
             
             <div className="text-center md:text-left">
-              <h4 className="text-lg font-bold mb-4">Redes Sociais</h4>
+              <h4 className="text-lg font-bold mb-4">Social Media</h4>
               <div className="flex gap-4 justify-center md:justify-start">
                 <a href="#" className="text-3xl hover:scale-110 transition-transform">📘</a>
                 <a href="#" className="text-3xl hover:scale-110 transition-transform">📷</a>
@@ -314,7 +314,7 @@ export default function Landing() {
           
           <div className="border-t border-purple-500 pt-8 text-center">
             <p className="text-purple-200 font-medium">
-              © 2024 Fraction Fast Pack. Todos os direitos reservados. Feito com 💜 para crianças do Brasil!
+              © 2024 Fraction Fast Pack. All rights reserved. Made with 💜 for children everywhere!
             </p>
           </div>
         </div>
