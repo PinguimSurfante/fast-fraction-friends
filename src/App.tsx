@@ -31,10 +31,13 @@ export default function App() {
         <Sonner />
         <Router>
           <Routes>
-            {/* Landing page pública sem sidebar */}
+            {/* Redireciona a raiz para /landing */}
+            <Route path="/" element={<Navigate to="/landing" replace />} />
+
+            {/* Página pública (sem sidebar) */}
             <Route path="/landing" element={<Landing />} />
 
-            {/* Rotas principais com sidebar */}
+            {/* Rotas internas com sidebar */}
             <Route
               path="/*"
               element={
@@ -43,7 +46,6 @@ export default function App() {
                     <AppSidebar />
                     <main className="flex-1 overflow-auto">
                       <Routes>
-                        <Route path="/" element={<Navigate to="/lessons" replace />} />
                         <Route path="/lessons" element={<Lessons />} />
                         <Route path="/lessons/1" element={<Lesson1 />} />
                         <Route path="/lessons/2" element={<Lesson2 />} />
