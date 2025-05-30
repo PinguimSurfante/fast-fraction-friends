@@ -4,12 +4,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play, Star, Trophy } from "lucide-react";
 import PizzaModal from "@/components/PizzaModal";
-import RaceModal from "@/components/RaceModal"; // ✅ novo import
+import RaceModal from "@/components/RaceModal";
 import MemoryModal from "@/components/MemoryModal";
 import CakeModal from "@/components/CakeModal";
 import SpaceModal from "@/components/SpaceModal";
 import GardenModal from "@/components/GardenModal";
 
+// 🧠 Importa o gerador de exercício
+import { generateFractionExercise } from "@/services/exerciseGenerator";
+import { Menu } from "@/components/Menu";
 
 const games = [
   {
@@ -83,11 +86,26 @@ const difficultyColors = {
 export default function Games() {
   const [selectedGame, setSelectedGame] = useState<number | null>(null);
   const [pizzaModalOpen, setPizzaModalOpen] = useState(false);
-  const [raceModalOpen, setRaceModalOpen] = useState(false); // ✅ novo estado
+  const [raceModalOpen, setRaceModalOpen] = useState(false);
   const [memoryModalOpen, setMemoryModalOpen] = useState(false);
   const [CakeModalOpen, setCakeModalOpen] = useState(false);
   const [SpaceModalOpen, setSpaceModalOpen] = useState(false);
   const [GardenModalOpen, setGardenModalOpen] = useState(false);
+
+  const [exercise, setExercise] = useState(generateFractionExercise());
+  const [feedback, setFeedback] = useState("");
+
+  const handleExerciseAnswer = (answer: string) => {
+    if (answer === exercise.correctAnswer) {
+      setFeedback("✅ Correct!");
+      setTimeout(() => {
+        setExercise(generateFractionExercise());
+        setFeedback("");
+      }, 1000);
+    } else {
+      setFeedback("❌ Try again!");
+    }
+  };
 
   const GameCard = ({ game }: { game: typeof games[0] }) => (
     <Card className="lesson-card overflow-hidden group hover:scale-105 transition-all duration-300">
@@ -111,8 +129,6 @@ export default function Games() {
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-purple-600 font-medium">{game.description}</p>
-        
-        {/* Game Stats */}
         <div className="flex items-center justify-between bg-gradient-to-r from-kid-blue/20 to-kid-purple/20 rounded-xl p-3">
           <div className="flex items-center gap-1">
             {[...Array(3)].map((_, i) => (
@@ -129,24 +145,16 @@ export default function Games() {
             </div>
           )}
         </div>
-
         <Button 
           className="w-full kid-button font-bold text-lg py-3 rounded-2xl group-hover:scale-105 transition-all duration-300"
           onClick={() => {
             setSelectedGame(game.id);
-            if (game.id === 1) {
-              setPizzaModalOpen(true);
-            } else if (game.id === 2) {
-              setRaceModalOpen(true); // ✅ abre o modal do carro
-            } else if (game.id === 3) {
-              setMemoryModalOpen(true);
-            } else if (game.id === 4) {
-              setCakeModalOpen(true);
-            } else if (game.id === 5) {
-              setSpaceModalOpen(true);
-            } else if (game.id === 6) {
-              setGardenModalOpen(true);
-            }
+            if (game.id === 1) setPizzaModalOpen(true);
+            else if (game.id === 2) setRaceModalOpen(true);
+            else if (game.id === 3) setMemoryModalOpen(true);
+            else if (game.id === 4) setCakeModalOpen(true);
+            else if (game.id === 5) setSpaceModalOpen(true);
+            else if (game.id === 6) setGardenModalOpen(true);
           }}
         >
           <Play className="mr-2 h-5 w-5" />
@@ -158,7 +166,9 @@ export default function Games() {
 
   return (
     <div className="min-h-screen p-6 space-y-8">
-      {/* Header Section */}
+      <Menu />
+
+      {/* 🎮 Header */}
       <div className="kid-card max-w-4xl mx-auto">
         <div className="flex items-center gap-6 mb-6">
           <div className="text-6xl animate-wiggle">🎮</div>
@@ -173,8 +183,24 @@ export default function Games() {
         </div>
       </div>
 
-      {/* Quick Stats */}
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* 🧠 Exercise Generator */}
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold text-purple-700 mb-4">🧠 Practice Time!</h2>
+        <div className="bg-purple-100 p-4 rounded-xl text-center">
+          <p className="mb-2 font-medium text-purple-700">{exercise.question}</p>
+          <div className="flex justify-center gap-4">
+            {exercise.options.map((option) => (
+              <Button key={option} onClick={() => handleExerciseAnswer(option)} className="text-black">
+                {option}
+              </Button>
+            ))}
+          </div>
+          {feedback && <p className="mt-2 font-bold text-orange-700">{feedback}</p>}
+        </div>
+      </div>
+
+      {/* 📊 Quick Stats */}
+      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
         <div className="kid-card text-center">
           <div className="text-3xl mb-2">🏆</div>
           <div className="text-2xl font-bold text-purple-700">
@@ -198,7 +224,7 @@ export default function Games() {
         </div>
       </div>
 
-      {/* Games Grid */}
+      {/* 🎮 Games Grid */}
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-purple-700 mb-6 text-center">
           Choose Your Game Adventure! 🗺️
@@ -210,7 +236,7 @@ export default function Games() {
         </div>
       </div>
 
-      {/* Fun Encouragement */}
+      {/* 🎉 Encouragement */}
       <div className="kid-card max-w-2xl mx-auto text-center">
         <div className="text-5xl mb-4">🎊</div>
         <h3 className="text-2xl font-bold text-purple-700 mb-2">
@@ -221,7 +247,7 @@ export default function Games() {
         </p>
       </div>
 
-      {/* ✅ Modais dos jogos */}
+      {/* 🧩 Modals */}
       <PizzaModal open={pizzaModalOpen} setOpen={setPizzaModalOpen} />
       <RaceModal open={raceModalOpen} setOpen={setRaceModalOpen} />
       <MemoryModal open={memoryModalOpen} setOpen={setMemoryModalOpen} />

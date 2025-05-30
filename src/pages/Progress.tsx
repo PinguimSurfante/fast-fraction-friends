@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Trophy, Star, Target, Award, TrendingUp } from "lucide-react";
+import { Menu } from "@/components/Menu";
 
 const achievements = [
   { id: 1, title: "First Steps! 👶", description: "Completed your first lesson", earned: true, icon: "🌟" },
@@ -32,6 +33,7 @@ export default function ProgressPage() {
 
   return (
     <div className="min-h-screen p-6 space-y-8">
+      <Menu />
       {/* Header Section */}
       <div className="kid-card max-w-4xl mx-auto">
         <div className="flex items-center gap-6 mb-6">

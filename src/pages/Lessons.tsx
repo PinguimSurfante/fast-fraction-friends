@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Play, Check } from "lucide-react";
+import { Menu } from "@/components/Menu";
 
 const defaultLessons = [
   {
@@ -117,6 +118,7 @@ export default function Lessons() {
 
   return (
     <div className="min-h-screen p-6 space-y-8">
+      <Menu />
       {/* Header Section */}
       <div className="kid-card max-w-4xl mx-auto">
         <div className="flex items-center gap-6 mb-6">

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Edit, Camera } from "lucide-react";
+import { Menu } from "@/components/Menu";
 
 const avatarOptions = [
   "🐱", "🐶", "🐰", "🐻", "🦊", "🐼", 
@@ -27,6 +28,7 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen p-6 space-y-8">
+      <Menu />
       {/* Header Section */}
       <div className="kid-card max-w-4xl mx-auto">
         <div className="flex items-center gap-6 mb-6">
