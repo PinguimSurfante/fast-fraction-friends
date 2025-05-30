@@ -101,7 +101,7 @@ export function AppSidebar() {
                   !open ? "px-2" : "px-4"
                 }`}
               >
-                \ud83d\udd13 {open && "Logout"}
+               {open && "Logout"}
               </Button>
             </DialogTrigger>
             <DialogContent className="kid-card max-w-md">

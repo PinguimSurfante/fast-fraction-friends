@@ -2,8 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, BookOpen, Gamepad2, BarChart3, Check, Users, User, Shield, Globe, TrendingUp, GraduationCap } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Star } from "lucide-react";
 
 export default function Landing() {
   const testimonials = [
@@ -70,12 +69,15 @@ export default function Landing() {
               <p className="text-sm text-purple-500 font-medium">Learn fractions while playing!</p>
             </div>
           </div>
-          <Link to="/lessons">
+          <a
+            href="https://pay.hotmart.com/R100017121E"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button className="kid-button text-2xl px-12 py-6 text-black shadow-2xl hover:shadow-3xl transform hover:scale-110">
-          Start now! ✨
-        </Button>
-
-          </Link>
+              Start now! ✨
+            </Button>
+          </a>
         </div>
       </header>
 
@@ -96,12 +98,15 @@ export default function Landing() {
                 <p className="text-purple-600 font-medium mt-4">Fun guaranteed for the whole family!</p>
               </div>
             </div>
-            <Link to="/lessons">
+            <a
+              href="https://pay.hotmart.com/R100017121E"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button className="kid-button text-2xl px-12 py-6 text-black shadow-2xl hover:shadow-3xl transform hover:scale-110">
-              Start now! ✨
-            </Button>
-
-            </Link>
+                Start now! ✨
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -118,7 +123,6 @@ export default function Landing() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <Card key={index} className="card-rosy text-center hover:scale-105 transition-all duration-300">
-
                 <CardContent className="pt-8">
                   <div className="text-6xl mb-6 animate-wiggle">{feature.icon}</div>
                   <h3 className="text-2xl font-bold text-purple-700 mb-4">{feature.title}</h3>
@@ -176,11 +180,9 @@ export default function Landing() {
           <p className="text-xl text-purple-600 text-center mb-12 font-medium">
             Here are the answers to the most common questions!
           </p>
-          
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <Card key={index} className="card-rosy text-center hover:scale-105 transition-all duration-300">
-
                 <CardContent className="pt-6">
                   <h3 className="text-xl font-bold text-purple-700 mb-3 flex items-center gap-2">
                     <div className="text-2xl">❓</div>
@@ -209,7 +211,7 @@ export default function Landing() {
                 Transforming fraction learning into fun!
               </p>
             </div>
-            
+
             <div className="text-center md:text-left">
               <h4 className="text-lg font-bold mb-4">Useful Links</h4>
               <ul className="space-y-2">
@@ -218,7 +220,7 @@ export default function Landing() {
                 <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Contact</a></li>
               </ul>
             </div>
-            
+
             <div className="text-center md:text-left">
               <h4 className="text-lg font-bold mb-4">For Educators</h4>
               <ul className="space-y-2">
@@ -227,7 +229,7 @@ export default function Landing() {
                 <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Training</a></li>
               </ul>
             </div>
-            
+
             <div className="text-center md:text-left">
               <h4 className="text-lg font-bold mb-4">Social Media</h4>
               <div className="flex gap-4 justify-center md:justify-start">
@@ -238,7 +240,7 @@ export default function Landing() {
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-purple-500 pt-8 text-center">
             <p className="text-purple-200 font-medium">
               © 2024 Fraction Fast Pack. All rights reserved. Made with 💜 for children everywhere!
