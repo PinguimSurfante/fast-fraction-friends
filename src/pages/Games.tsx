@@ -11,8 +11,21 @@ import SpaceModal from "@/components/SpaceModal";
 import GardenModal from "@/components/GardenModal";
 import { generateFractionExercise } from "@/services/exerciseGenerator";
 import { Menu } from "@/components/Menu";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-const games = [
+interface Game {
+  id: number;
+  title: string;
+  description: string;
+  difficulty: "Easy" | "Medium" | "Hard";
+  stars: number;
+  bestScore: number;
+  icon: string;
+  color: string;
+  theme?: string;
+}
+
+const games: Game[] = [
   { id: 1, title: "Pizza Fraction Factory 🍕", description: "Build pizzas with the correct fractions! Help Chef Mario serve his customers!", difficulty: "Easy", stars: 3, bestScore: 850, icon: "🍕", color: "from-red-400 to-orange-400" },
   { id: 2, title: "Fraction Race Car 🏎️", description: "Race to the finish line by choosing the right fractions! Zoom zoom!", difficulty: "Medium", stars: 2, bestScore: 720, icon: "🏎️", color: "from-blue-400 to-cyan-400" },
   { id: 3, title: "Memory Fraction Match 🧠", description: "Match fraction cards with their pictures! Train your brain!", difficulty: "Easy", stars: 3, bestScore: 960, icon: "🧠", color: "from-purple-400 to-pink-400" },
@@ -27,6 +40,73 @@ const difficultyColors = {
   Hard: "bg-kid-orange"
 };
 
+function generateThemedExercise(theme: string) {
+  const numerator = Math.floor(Math.random() * 5) + 1;
+  const denominator = 5 + Math.floor(Math.random() * 5);
+  const correct = `${numerator}/${denominator}`;
+  const options = [correct];
+
+  while (options.length < 3) {
+    const fake = `${Math.floor(Math.random() * denominator) + 1}/${denominator}`;
+    if (!options.includes(fake)) options.push(fake);
+  }
+
+  const themes: Record<string, string> = {
+    alien: `Feed the alien 👽 exactly ${correct} slices of space pizza!`,
+    donut: `Which donut slice shows ${correct}? 🍩`,
+    rainbow: `Color ${correct} of the rainbow! 🌈`,
+    jungle: `Give the monkey 🐒 ${correct} bananas.`,
+    ocean: `Help the fish 🐠 collect ${correct} coral pieces.`
+  };
+
+  return {
+    question: themes[theme] || `Which shows ${correct}?`,
+    options: options.sort(() => Math.random() - 0.5),
+    correctAnswer: correct
+  };
+}
+
+function generateRandomGame(id: number): Game {
+  const themes = ["donut", "rainbow", "alien", "jungle", "ocean"];
+  const titles = [
+    "Donut Fractions 🍩", "Rainbow Slices 🌈", "Alien Math 👽",
+    "Jungle Fractions 🐒", "Ocean Division 🌊"
+  ];
+  const descriptions = [
+    "Slice donuts with perfect fractions!",
+    "Fill the rainbow with the right slices!",
+    "Feed the alien the right numbers!",
+    "Help the monkey collect fractional bananas!",
+    "Dive into the sea and match fractions!"
+  ];
+  const icons = ["🍩", "🌈", "👽", "🐒", "🌊"];
+  const difficulties: Game["difficulty"][] = ["Easy", "Medium", "Hard"];
+  const colors = [
+    "from-yellow-300 to-pink-300",
+    "from-blue-300 to-indigo-300",
+    "from-green-300 to-lime-300",
+    "from-purple-300 to-pink-300",
+    "from-red-300 to-orange-300"
+  ];
+
+  const index = Math.floor(Math.random() * titles.length);
+
+  return {
+    id,
+    title: titles[index],
+    description: descriptions[index],
+    difficulty: difficulties[Math.floor(Math.random() * difficulties.length)],
+    stars: 0,
+    bestScore: 0,
+    icon: icons[index],
+    color: colors[index],
+    theme: themes[index]
+  };
+}
+
+
+
+
 export default function Games() {
   const [selectedGame, setSelectedGame] = useState<number | null>(null);
   const [playedGames, setPlayedGames] = useState<number[]>(() => JSON.parse(localStorage.getItem("playedGames") || "[]"));
@@ -40,13 +120,21 @@ export default function Games() {
 
   const [exercise, setExercise] = useState(generateFractionExercise());
   const [feedback, setFeedback] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [questionCount, setQuestionCount] = useState(0);
 
   const handleExerciseAnswer = (answer: string) => {
     if (answer === exercise.correctAnswer) {
       setFeedback("✅ Correct!");
       setTimeout(() => {
-        setExercise(generateFractionExercise());
-        setFeedback("");
+        if (questionCount + 1 >= 5) {
+          setModalOpen(false);
+          setQuestionCount(0);
+        } else {
+          setExercise(generateFractionExercise());
+          setFeedback("");
+          setQuestionCount((prev) => prev + 1);
+        }
       }, 1000);
     } else {
       setFeedback("❌ Try again!");
@@ -68,6 +156,15 @@ export default function Games() {
     else if (gameId === 4) setCakeModalOpen(true);
     else if (gameId === 5) setSpaceModalOpen(true);
     else if (gameId === 6) setGardenModalOpen(true);
+    else {
+  const game = games.find(g => g.id === gameId);
+      if (game && 'theme' in game && game.theme) {
+        setExercise(generateThemedExercise(game.theme));
+      } else {
+        setExercise(generateFractionExercise());
+      }
+      setModalOpen(true);
+}
   };
 
   const GameCard = ({ game }: { game: typeof games[0] }) => {
@@ -162,6 +259,20 @@ export default function Games() {
         </div>
       </div>
 
+      <div className="text-center mt-8">
+        <Button
+          onClick={() => {
+            const newGame = generateRandomGame(games.length + 1);
+            games.push(newGame);
+            handlePlayGame(newGame.id);
+          }}
+          className="kid-button text-black font-bold px-6 py-3 rounded-2xl"
+        >
+          ➕ Add Game
+        </Button>
+
+      </div>
+
       <div className="kid-card max-w-2xl mx-auto text-center">
         <div className="text-5xl mb-4">🎉</div>
         <h3 className="text-2xl font-bold text-purple-700 mb-2">Keep Playing and Learning!</h3>
@@ -169,6 +280,30 @@ export default function Games() {
           Every game makes you better at fractions! Have fun and don't forget to celebrate your wins! 🎉
         </p>
       </div>
+
+      <Dialog open={modalOpen} onOpenChange={(v) => {
+        setModalOpen(v);
+        if (!v) setQuestionCount(0);
+      }}>
+        <DialogContent className="bg-white rounded-3xl p-6 border-4 border-yellow-200 shadow-xl text-center text-purple-800 text-lg font-semibold space-y-4 animate-fade-in">
+          <DialogHeader>
+            <DialogTitle>🎲 Random Fraction Game</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="font-medium text-purple-700">{exercise.question}</p>
+            <div className="flex justify-center gap-4">
+              {exercise.options.map((opt) => (
+                <Button key={opt} onClick={() => handleExerciseAnswer(opt)} className="text-black">
+                  {opt}
+                </Button>
+              ))}
+
+            </div>
+            {feedback && <p className="text-orange-700 font-bold">{feedback}</p>}
+            <p className="text-sm text-purple-500">Question {questionCount + 1} of 5</p>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <PizzaModal open={pizzaModalOpen} setOpen={setPizzaModalOpen} />
       <RaceModal open={raceModalOpen} setOpen={setRaceModalOpen} />

@@ -12,6 +12,12 @@ function shuffle<T>(array: T[]): T[] {
   return [...array].sort(() => Math.random() - 0.5);
 }
 
+// 👈 ADICIONADO: Função para gerar visual dos tanques (cheios e vazios)
+function getVisualFuelTanks(fraction: string): string {
+  const [numerator, denominator] = fraction.split("/").map(Number);
+  return "⛽".repeat(numerator) + "⬜".repeat(denominator - numerator);
+}
+
 export default function RaceModal({
   open,
   setOpen,
@@ -74,9 +80,15 @@ export default function RaceModal({
 
         {currentQuestion && !finished && (
           <>
+            {/* 👇 SUBSTITUÍDO: Pergunta com fração clara e visual dos tanques */}
             <p className="text-lg text-blue-700 font-semibold text-center mb-2">
-              How many tanks do you see? {currentQuestion.image}
+              How many tanks are full out of {currentQuestion.correct.split("/")[1]}?
+              <br />
+              <span className="text-3xl">
+                {getVisualFuelTanks(currentQuestion.correct)}
+              </span>
             </p>
+
             <p className="text-center text-sm text-red-600 mb-2">
               Mistakes: {errors}
             </p>
