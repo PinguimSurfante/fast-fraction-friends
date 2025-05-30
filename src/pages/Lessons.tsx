@@ -98,7 +98,7 @@ export default function Lessons() {
       <CardContent>
         <p className="text-purple-600 mb-4 font-medium">{lesson.description}</p>
         <Button 
-          className="w-full kid-button font-bold text-lg py-3 rounded-2xl"
+          className="w-full kid-button font-bold text-lg py-3 rounded-2xl text-black"
           onClick={() => {
             const completed = JSON.parse(localStorage.getItem("completedLessons") || "[]");
             if (!completed.includes(lesson.id)) {

@@ -1,15 +1,20 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
 import { Edit, Camera } from "lucide-react";
 import { Menu } from "@/components/Menu";
 
 const avatarOptions = [
-  "🐱", "🐶", "🐰", "🐻", "🦊", "🐼", 
+  "🐱", "🐶", "🐰", "🐻", "🦊", "🐼",
   "🦉", "🐸", "🐯", "🦁", "🐨", "🐵",
   "🦄", "🐧", "🐙", "🦋", "🐝", "🐞"
 ];
@@ -21,6 +26,16 @@ export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
 
+  const [completedLessons, setCompletedLessons] = useState(0);
+  const [playedGames, setPlayedGames] = useState(0);
+
+  useEffect(() => {
+    const lessons = JSON.parse(localStorage.getItem("completedLessons") || "[]");
+    const games = JSON.parse(localStorage.getItem("playedGames") || "[]");
+    setCompletedLessons(lessons.length);
+    setPlayedGames(games.length);
+  }, []);
+
   const handleSave = () => {
     setIsEditing(false);
     console.log("Profile saved:", { name, parentEmail, avatar: selectedAvatar });
@@ -29,7 +44,7 @@ export default function Profile() {
   return (
     <div className="min-h-screen p-6 space-y-8">
       <Menu />
-      {/* Header Section */}
+
       <div className="kid-card max-w-4xl mx-auto">
         <div className="flex items-center gap-6 mb-6">
           <div className="text-6xl animate-wiggle">👤</div>
@@ -60,7 +75,6 @@ export default function Profile() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            {/* Avatar Section */}
             <div className="text-center space-y-4">
               <div className="relative inline-block">
                 <div className="text-8xl bg-white rounded-full p-4 shadow-lg border-4 border-kid-purple/20">
@@ -68,10 +82,7 @@ export default function Profile() {
                 </div>
                 <Dialog open={showAvatarPicker} onOpenChange={setShowAvatarPicker}>
                   <DialogTrigger asChild>
-                    <Button
-                      size="sm"
-                      className="absolute -bottom-2 -right-2 rounded-full kid-button p-2"
-                    >
+                    <Button size="sm" className="absolute -bottom-2 -right-2 rounded-full kid-button p-2">
                       <Camera className="h-4 w-4" />
                     </Button>
                   </DialogTrigger>
@@ -90,8 +101,8 @@ export default function Profile() {
                             setShowAvatarPicker(false);
                           }}
                           className={`text-4xl p-3 rounded-2xl border-2 transition-all duration-300 hover:scale-110 ${
-                            selectedAvatar === avatar 
-                              ? 'border-kid-purple bg-kid-purple/20' 
+                            selectedAvatar === avatar
+                              ? 'border-kid-purple bg-kid-purple/20'
                               : 'border-gray-200 hover:border-kid-purple/50'
                           }`}
                         >
@@ -177,12 +188,12 @@ export default function Profile() {
               </div>
               <div className="text-center bg-gradient-to-br from-kid-pink/30 to-kid-purple/30 rounded-2xl p-4">
                 <div className="text-3xl mb-2">📚</div>
-                <div className="text-2xl font-bold text-purple-700">2/5</div>
+                <div className="text-2xl font-bold text-purple-700">{completedLessons}/5</div>
                 <div className="text-purple-600 font-medium">Lessons Done</div>
               </div>
               <div className="text-center bg-gradient-to-br from-kid-blue/30 to-kid-purple/30 rounded-2xl p-4">
                 <div className="text-3xl mb-2">🎮</div>
-                <div className="text-2xl font-bold text-purple-700">4/6</div>
+                <div className="text-2xl font-bold text-purple-700">{playedGames}/6</div>
                 <div className="text-purple-600 font-medium">Games Played</div>
               </div>
             </div>
@@ -211,41 +222,11 @@ export default function Profile() {
         </Card>
       </div>
 
-      {/* Fun Stats */}
-      <div className="max-w-4xl mx-auto">
-        <Card className="kid-card">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-purple-700 text-center">
-              Fun Facts About You! 🎉
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-4xl mb-2">📅</div>
-                <div className="text-xl font-bold text-purple-700">7 Days</div>
-                <div className="text-purple-600 font-medium">Learning Streak</div>
-              </div>
-              <div>
-                <div className="text-4xl mb-2">🎯</div>
-                <div className="text-xl font-bold text-purple-700">960</div>
-                <div className="text-purple-600 font-medium">Best Game Score</div>
-              </div>
-              <div>
-                <div className="text-4xl mb-2">⏰</div>
-                <div className="text-xl font-bold text-purple-700">2h 45m</div>
-                <div className="text-purple-600 font-medium">Total Learning Time</div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
       {/* Encouragement */}
       <div className="kid-card max-w-2xl mx-auto text-center">
         <div className="text-5xl mb-4">🌈</div>
         <h3 className="text-2xl font-bold text-purple-700 mb-2">
-          You're Amazing, {name}! 
+          You're Amazing, {name}!
         </h3>
         <p className="text-lg text-purple-600 font-medium">
           Keep being awesome and learning new things every day! We're so proud of you! 💫
