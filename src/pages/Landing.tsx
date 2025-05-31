@@ -72,7 +72,7 @@ export default function Landing() {
             </div>
           </div>
           <a
-            href="https://pay.hotmart.com/R100017121E"
+            href="https://pay.hotmart.com/Y100039546J?off=69lop8m2"
             target="_blank"
             rel="noopener noreferrer"
           >
