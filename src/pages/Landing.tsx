@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Landing() {
+  const navigate = useNavigate()
   const testimonials = [
     {
       text: "My daughter learned in one week what took months at school!",
@@ -215,20 +217,28 @@ export default function Landing() {
             <div className="text-center md:text-left">
               <h4 className="text-lg font-bold mb-4">Useful Links</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Terms of Use</a></li>
-                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Contact</a></li>
+                <li><Link to="/terms" className="text-purple-200 hover:text-white transition-colors">
+                        Terms of Use
+                      </Link>
+                      </li>
+                <li><Link to="/privacy" className="text-purple-200 hover:text-white transition-colors">
+                        Privacy Policy
+                      </Link>
+                      </li>
+                <li><Link to="/contact" className="text-purple-200 hover:text-white transition-colors">
+                        Contact
+                      </Link></li>
               </ul>
             </div>
 
-            <div className="text-center md:text-left">
+            {/* <div className="text-center md:text-left">
               <h4 className="text-lg font-bold mb-4">For Educators</h4>
               <ul className="space-y-2">
                 <li><a href="#" className="text-purple-200 hover:text-white transition-colors">School Plan</a></li>
                 <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Teaching Materials</a></li>
                 <li><a href="#" className="text-purple-200 hover:text-white transition-colors">Training</a></li>
               </ul>
-            </div>
+            </div> */}
 
             <div className="text-center md:text-left">
               <h4 className="text-lg font-bold mb-4">Social Media</h4>
