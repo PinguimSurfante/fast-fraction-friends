@@ -129,30 +129,66 @@ export default function Landing() {
         </div>
       </section>
 
+
       {/* How it works */}
-      <section className="py-20 px-6 bg-gradient-to-br from-[#ecfccb] via-[#d1fae5] to-[#a7f3d0]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-purple-700 text-center mb-4">
-            How does it work? 🤔
-          </h2>
-          <p className="text-xl text-purple-600 text-center mb-12 font-medium">
-            Three simple steps to turn your child into a fraction expert!
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="card-rosy text-center hover:scale-105 transition-all duration-300">
-                <CardContent className="pt-8">
-                  <div className="text-6xl mb-6 animate-wiggle">{feature.icon}</div>
-                  <h3 className="text-2xl font-bold text-purple-700 mb-4">{feature.title}</h3>
-                  <p className="text-lg text-purple-600 font-medium leading-relaxed">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+    {/* Plans Section */}
+    <section className="py-20 px-6 bg-gradient-to-br from-[#fff1f2] via-[#fde68a] to-[#d8b4fe]">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl font-bold text-purple-700 text-center mb-10">
+          Find the right plan for your family 👨‍👩‍👧‍👦
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Standard Plan */}
+          <Card className="bg-white border-4 border-purple-200 rounded-3xl p-8 shadow-xl text-center hover:scale-105 transition-all duration-300">
+            <CardContent>
+              <div className="text-6xl mb-2">🥈</div>
+              <h3 className="text-3xl font-bold text-purple-700 mb-1">Standard Plan</h3>
+              <p className="text-xl font-bold text-purple-500 mb-4">$9 per-month</p>
+              <p className="text-lg text-purple-600 font-medium mb-6 leading-relaxed">
+                ✔️ Interactive Lessons<br />
+                ✔️ Fun Mini-Games<br />
+                ✔️ Progress Tracking
+              </p>
+              <a
+                href="https://pay.hotmart.com/Y100039546J?off=69lop8m2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="kid-button text-xl px-10 py-4 text-black rounded-2xl bg-kid-yellow hover:scale-105 transition">
+                  Get Standard Plan
+                </Button>
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* Premium Plan */}
+          <Card className="bg-white border-4 border-yellow-300 rounded-3xl p-8 shadow-xl text-center hover:scale-105 transition-all duration-300">
+            <CardContent>
+              <div className="text-6xl mb-2">🌟</div>
+              <h3 className="text-3xl font-bold text-yellow-700 mb-1">Premium Plan</h3>
+              <p className="text-xl font-bold text-yellow-600 mb-4">$19 per-month</p>
+              <p className="text-lg text-yellow-600 font-medium mb-6 leading-relaxed">
+                ✅ Everything from Standard<br />
+                ⭐ Exclusive Challenges<br />
+                🧩 Future Game Updates<br />
+                🎁 Special Rewards
+              </p>
+              <a
+                href="https://pay.hotmart.com/Y100039546J?off=w575f5jj"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="kid-button text-xl px-10 py-4 text-black bg-yellow-300 hover:bg-yellow-400 rounded-2xl hover:scale-105 transition">
+                  Go Premium 🌟
+                </Button>
+              </a>
+            </CardContent>
+          </Card>
         </div>
-      </section>
+      </div>
+    </section>
+
+
 
       {/* Testimonials */}
       <section className="py-20 px-6 bg-gradient-to-br from-[#e0f2fe] via-[#dbeafe] to-[#c7d2fe]">
