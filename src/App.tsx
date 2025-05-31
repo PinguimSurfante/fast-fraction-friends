@@ -6,7 +6,10 @@ import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 
-// Páginas públicas (sem sidebar)
+import Success from "./pages/Success";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+
+// Páginas públicas
 import Landing from "./pages/Landing";
 import TermsOfUse from "./pages/TermsOfUse";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -19,7 +22,7 @@ import Progress from "./pages/Progress";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
-// Lição individual
+// Lições individuais
 import Lesson1 from "./pages/lessons/Lesson1";
 import Lesson2 from "./pages/lessons/Lesson2";
 import Lesson3 from "./pages/lessons/Lesson3";
@@ -44,30 +47,33 @@ export default function App() {
             <Route path="/terms" element={<TermsOfUse />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/success" element={<Success />} />
 
-            {/* Rotas privadas/internas com sidebar */}
+            {/* Rotas privadas protegidas */}
             <Route
               path="/*"
               element={
-                <SidebarProvider defaultOpen={true}>
-                  <div className="min-h-screen flex w-full">
-                    <AppSidebar />
-                    <main className="flex-1 overflow-auto">
-                      <Routes>
-                        <Route path="lessons" element={<Lessons />} />
-                        <Route path="lessons/1" element={<Lesson1 />} />
-                        <Route path="lessons/2" element={<Lesson2 />} />
-                        <Route path="lessons/3" element={<Lesson3 />} />
-                        <Route path="lessons/4" element={<Lesson4 />} />
-                        <Route path="lessons/5" element={<Lesson5 />} />
-                        <Route path="games" element={<Games />} />
-                        <Route path="progress" element={<Progress />} />
-                        <Route path="profile" element={<Profile />} />
-                        <Route path="*" element={<NotFound />} />
-                      </Routes>
-                    </main>
-                  </div>
-                </SidebarProvider>
+                <ProtectedRoute>
+                  <SidebarProvider defaultOpen={true}>
+                    <div className="min-h-screen flex w-full">
+                      <AppSidebar />
+                      <main className="flex-1 overflow-auto">
+                        <Routes>
+                          <Route path="lessons" element={<Lessons />} />
+                          <Route path="lessons/1" element={<Lesson1 />} />
+                          <Route path="lessons/2" element={<Lesson2 />} />
+                          <Route path="lessons/3" element={<Lesson3 />} />
+                          <Route path="lessons/4" element={<Lesson4 />} />
+                          <Route path="lessons/5" element={<Lesson5 />} />
+                          <Route path="games" element={<Games />} />
+                          <Route path="progress" element={<Progress />} />
+                          <Route path="profile" element={<Profile />} />
+                          <Route path="*" element={<NotFound />} />
+                        </Routes>
+                      </main>
+                    </div>
+                  </SidebarProvider>
+                </ProtectedRoute>
               }
             />
           </Routes>
