@@ -100,15 +100,31 @@ export default function Landing() {
                 <p className="text-purple-600 font-medium mt-4">Fun guaranteed for the whole family!</p>
               </div>
             </div>
-            <a
-              href="https://pay.hotmart.com/R100017121E"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button className="kid-button text-2xl px-12 py-6 text-black shadow-2xl hover:shadow-3xl transform hover:scale-110">
-                Start now! ✨
-              </Button>
-            </a>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4 w-full max-w-md mx-auto">
+                        <a
+                          href="https://pay.hotmart.com/Y100039546J?off=69lop8m2"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full"
+                        >
+                          <Button className="kid-button text-2xl px-10 py-6 text-black rounded-2xl hover:scale-105 transition w-full">
+                            Standard
+                          </Button>
+                        </a>
+                        <a
+                          href="https://pay.hotmart.com/Y100039546J?off=w575f5jj"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full"
+                        >
+                          <Button className="kid-button text-2xl px-10 py-6 text-black bg-yellow-300 hover:bg-yellow-400 rounded-2xl hover:scale-105 transition w-full">
+                            Premium 🌟
+                          </Button>
+                        </a>
+                      </div>
+
+
           </div>
         </div>
       </section>
