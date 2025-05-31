@@ -51,7 +51,7 @@ export default function Landing() {
     },
     {
       question: "How do I track my child's progress?",
-      answer: "You receive detailed weekly reports and can track progress in real-time through the parent dashboard."
+      answer: "You can follow your child's progress in real-time through the platform."
     },
     {
       question: "Is the content aligned with school curriculum?",
